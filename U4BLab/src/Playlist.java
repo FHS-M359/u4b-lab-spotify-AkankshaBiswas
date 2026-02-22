@@ -33,6 +33,45 @@ public class Playlist {
         }
 
     }
+    arr
+
+    public void searchByGenre(String genre){
+        ArrayList<Song> filteredList=new ArrayList<Song>();
+        for(Song i:songsList){
+            if(i.getGenre().equals(genre)){
+            filteredList.add(i);
+            }
+        }
+        System.out.println(filteredList);
+    }
+
+    public void sortByArtist(){
+
+        ArrayList<Song> copiedList=new ArrayList<>(songsList);
+        for(int i=0; i<copiedList.size()-1; i++){
+            int indexSmallest=i;
+
+
+            for(int s=i+1; s< copiedList.size(); s++){
+                String currentArtist=copiedList.get(s).getArtist();
+                String smallestArtist=copiedList.get(indexSmallest).getArtist();
+                if(currentArtist.compareToIgnoreCase(smallestArtist)<0){
+                    indexSmallest=s;
+                }
+
+            }
+                if(indexSmallest!=i){
+                    Song temp=copiedList.get(i);
+                    copiedList.set(i,copiedList.get(indexSmallest));
+
+                    copiedList.set(indexSmallest, temp);
+                }
+
+
+        }
+
+        System.out.println(copiedList);
+    }
     @Override
     public String toString(){
         String body="";
