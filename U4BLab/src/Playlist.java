@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class Playlist {
 
     ArrayList<Song> songsList;
+    ArrayList<Song> sortedByArtistListAZ=new ArrayList<>();
+    ArrayList<Song> sortedByArtistListZA=new ArrayList<>();
+
 
     public Playlist() throws FileNotFoundException{
         this.songsList=new ArrayList<Song>();
@@ -33,7 +36,7 @@ public class Playlist {
         }
 
     }
-    arr
+
 
     public void searchByGenre(String genre){
         ArrayList<Song> filteredList=new ArrayList<Song>();
@@ -42,35 +45,93 @@ public class Playlist {
             filteredList.add(i);
             }
         }
-        System.out.println(filteredList);
+        songOutput(filteredList);
     }
-
-    public void sortByArtist(){
-
-        ArrayList<Song> copiedList=new ArrayList<>(songsList);
-        for(int i=0; i<copiedList.size()-1; i++){
+    public void sortByArtistAZ(){
+        sortedByArtistListAZ.addAll(songsList);
+        for(int i=0; i<sortedByArtistListAZ.size()-1; i++){
             int indexSmallest=i;
 
 
-            for(int s=i+1; s< copiedList.size(); s++){
-                String currentArtist=copiedList.get(s).getArtist();
-                String smallestArtist=copiedList.get(indexSmallest).getArtist();
+            for(int s=i+1; s< sortedByArtistListAZ.size(); s++){
+                String currentArtist=sortedByArtistListAZ.get(s).getArtist();
+                String smallestArtist=sortedByArtistListAZ.get(indexSmallest).getArtist();
                 if(currentArtist.compareToIgnoreCase(smallestArtist)<0){
                     indexSmallest=s;
                 }
 
             }
                 if(indexSmallest!=i){
-                    Song temp=copiedList.get(i);
-                    copiedList.set(i,copiedList.get(indexSmallest));
+                    Song temp=sortedByArtistListAZ.get(i);
+                    sortedByArtistListAZ.set(i,sortedByArtistListAZ.get(indexSmallest));
 
-                    copiedList.set(indexSmallest, temp);
+                    sortedByArtistListAZ.set(indexSmallest, temp);
                 }
 
 
         }
 
-        System.out.println(copiedList);
+        songOutput(sortedByArtistListAZ);
+    }
+    public void sortByArtistZA(){
+        sortedByArtistListZA.addAll(songsList);
+        for(int i=0; i<sortedByArtistListZA.size()-1; i++){
+            int indexLargest=i;
+
+
+            for(int s=i+1; s< sortedByArtistListZA.size(); s++){
+                String currentArtist=sortedByArtistListZA.get(s).getArtist();
+                String smallestArtist=sortedByArtistListZA.get(indexLargest).getArtist();
+                if(currentArtist.compareToIgnoreCase(smallestArtist)>0){
+                    indexLargest=s;
+                }
+
+            }
+            if(indexLargest!=i){
+                Song temp=sortedByArtistListZA.get(i);
+                sortedByArtistListZA.set(i,sortedByArtistListZA.get(indexLargest));
+
+                sortedByArtistListZA.set(indexLargest, temp);
+            }
+
+
+        }
+
+        songOutput(sortedByArtistListZA);
+
+    }
+
+    public void sortByYear(){
+        ArrayList<Song> copiedList=new ArrayList<>(songsList);
+        for(int i=1; i<copiedList.size(); i++){
+            Song key=copiedList.get(i);
+
+            int j=i-1;
+            while(j>=0 && copiedList.get(j).getYear()>key.getYear()){
+                copiedList.set(j+1,copiedList.get(j));
+                j--;
+
+            }
+            copiedList.set(j+1,key);
+
+        }
+        songOutput(copiedList);
+
+    }
+
+    public void songOutput(ArrayList<Song> songs){
+        String body="";
+        String header=String.format("%-25s %-25s %-30s %-25s %-5s",
+                "title","artist","album","genre","year");
+        String dashed="-----------------------------------------------------------------------------------------------------------------------------------------";
+        for(Song i:songs){
+            body+="\n"+String.format("%-25s %-25s %-30s %-25s %-5d",
+                    i.getTitle(), i.getArtist(), i.getAlbum(),i.getGenre(),i.getYear());
+        }
+        System.out.println(header+"\n"+dashed+"\n"+body);
+
+
+
     }
     @Override
     public String toString(){
