@@ -22,11 +22,12 @@ public class SpotifyTester {
         Playlist obj=new Playlist();
 //        System.out.println(obj);
 //
-        obj.sortByYear();
+        obj.sortByYearNewToOld();
+        obj.sortByYearOldToNew();
 
         System.out.println("Artist sorted ");
         obj.sortByArtistAZ();
 
         obj.searchByGenre("Hip-Hop");
-    }
+   }
 }

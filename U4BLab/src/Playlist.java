@@ -8,8 +8,6 @@ import java.util.ArrayList;
 public class Playlist {
 
     ArrayList<Song> songsList;
-    ArrayList<Song> sortedByArtistListAZ=new ArrayList<>();
-    ArrayList<Song> sortedByArtistListZA=new ArrayList<>();
 
 
     public Playlist() throws FileNotFoundException{
@@ -48,7 +46,7 @@ public class Playlist {
         songOutput(filteredList);
     }
     public void sortByArtistAZ(){
-        sortedByArtistListAZ.addAll(songsList);
+        ArrayList<Song> sortedByArtistListAZ=new ArrayList<>(songsList);
         for(int i=0; i<sortedByArtistListAZ.size()-1; i++){
             int indexSmallest=i;
 
@@ -74,7 +72,7 @@ public class Playlist {
         songOutput(sortedByArtistListAZ);
     }
     public void sortByArtistZA(){
-        sortedByArtistListZA.addAll(songsList);
+        ArrayList<Song> sortedByArtistListZA=new ArrayList<>(songsList);
         for(int i=0; i<sortedByArtistListZA.size()-1; i++){
             int indexLargest=i;
 
@@ -101,13 +99,30 @@ public class Playlist {
 
     }
 
-    public void sortByYear(){
+    public void sortByYearOldToNew(){
         ArrayList<Song> copiedList=new ArrayList<>(songsList);
         for(int i=1; i<copiedList.size(); i++){
             Song key=copiedList.get(i);
 
             int j=i-1;
             while(j>=0 && copiedList.get(j).getYear()>key.getYear()){
+                copiedList.set(j+1,copiedList.get(j));
+                j--;
+
+            }
+            copiedList.set(j+1,key);
+
+        }
+        songOutput(copiedList);
+
+    }
+    public void sortByYearNewToOld(){
+        ArrayList<Song> copiedList=new ArrayList<>(songsList);
+        for(int i=1; i<copiedList.size(); i++){
+            Song key=copiedList.get(i);
+
+            int j=i-1;
+            while(j>=0 && copiedList.get(j).getYear()<key.getYear()){
                 copiedList.set(j+1,copiedList.get(j));
                 j--;
 
