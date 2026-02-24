@@ -42,8 +42,13 @@ public class Playlist {
             if(i.getGenre().equals(genre)){
             filteredList.add(i);
             }
+
         }
-        songOutput(filteredList);
+        if(filteredList.size()==0){
+            System.out.println("No song in these genre was found. Please select from the following options next time.");
+        }
+        else{
+        songOutput(filteredList);}
     }
     public void sortByArtistAZ(){
         ArrayList<Song> sortedByArtistListAZ=new ArrayList<>(songsList);
@@ -136,11 +141,11 @@ public class Playlist {
 
     public void songOutput(ArrayList<Song> songs){
         String body="";
-        String header=String.format("%-25s %-25s %-30s %-25s %-5s",
+        String header=String.format("%-35s %-25s %-30s %-25s %-5s",
                 "title","artist","album","genre","year");
         String dashed="-----------------------------------------------------------------------------------------------------------------------------------------";
         for(Song i:songs){
-            body+="\n"+String.format("%-25s %-25s %-30s %-25s %-5d",
+            body+="\n"+String.format("%-35s %-25s %-30s %-25s %-5d",
                     i.getTitle(), i.getArtist(), i.getAlbum(),i.getGenre(),i.getYear());
         }
         System.out.println(header+"\n"+dashed+"\n"+body);
@@ -151,12 +156,12 @@ public class Playlist {
     @Override
     public String toString(){
         String body="";
-        String header=String.format("%-25s %-25s %-30s %-25s %-5s",
+        String header=String.format("%-35s %-25s %-30s %-25s %-5s",
                 "title","artist","album","genre","year");
         String dashed="-----------------------------------------------------------------------------------------------------------------------------------------";
         for(Song i:songsList){
-            body+="\n"+String.format("%-25s %-25s %-30s %-25s %-5d",
-                    i.getTitle(), i.getArtist(), i.getAlbum(),i.getGenre(),i.getYear());
+            body+=String.format("%-35s %-25s %-30s %-25s %-5d",
+                    i.getTitle(), i.getArtist(), i.getAlbum(),i.getGenre(),i.getYear())+"\n";
         }
         return header+"\n"+dashed+"\n"+body;
 

@@ -19,15 +19,20 @@ public class SpotifyTester {
         while(true) {
             System.out.println("Pick from the following options");
 
-
+//menu of options
+            System.out.println("******** MENU *********");
             System.out.println("1. view entire playlist"); //extra
             System.out.println("2. sort by artist by Z-A");
-            System.out.println("3.Sort artist by A-Z");
-            System.out.println("4.Sort by year: new-old");
+            System.out.println("3. Sort artist by A-Z");
+            System.out.println("4. Sort by year: new-old");
             System.out.println("5. Sort by year: old-new");
             System.out.println("6. Search by genre");
             System.out.println("7. quit");
+            System.out.println("******** MENU *********");
+
+
             try {
+                System.out.println("Enter your choice from 1-7!");
                 int answer = sc.nextInt();
 
                 if (answer >= VIEWPLAYLIST && answer <= SEARCHBYGENRE) {
@@ -68,9 +73,10 @@ public class SpotifyTester {
                 System.out.println("Invalid input; input correctly next time");
                 sc.next();
             }
+
         }
 
-
+    sc.close();
 
 
    }
