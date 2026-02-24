@@ -10,7 +10,8 @@ SexyBack,Justin Timberlake,FutureSex/LoveSounds,197,2006,Pop
 Umbrella,Rihanna,Good Girl Gone Bad,275,2007,Pop
 Viva La Vida,Coldplay,Viva La Vida,242,2008,Rock
 Poker Face,Lady Gaga,The Fame,235,2009,Pop
-Rolling in the Deep,Adele,21,228,2010,Pop6
+Rolling in the Deep,Adele,21,228,2010,Pop
+Somebody That I Used To Know,Gotye,Making Mirrors,245,2012,Indie
 Get Lucky,Daft Punk,Random Access Memories,248,2013,Electronic
 Happy,Pharrell Williams,G I R L,233,2014,Pop
 Can't Feel My Face,The Weeknd,Beauty Behind the Madness,210,2015,Pop
