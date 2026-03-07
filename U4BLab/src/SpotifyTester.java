@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+
+// the drive and test class that runs the
+// playlist program and lets the user to interact with the created menu
 public class SpotifyTester {
     private static final int VIEWPLAYLIST=1;
     private static final int SORTBYARTISTZA=2;
@@ -14,14 +17,16 @@ public class SpotifyTester {
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println("Let's start the spotify tester");
         Scanner sc=new Scanner(System.in);
+        
 
         Playlist songs=new Playlist();
         while(true) {
             System.out.println("Pick from the following options");
 
-//menu of options
+            //menu of options
+            // displays menu options for the user
             System.out.println("******** MENU *********");
-            System.out.println("1. view entire playlist"); //extra
+            System.out.println("1. view entire playlist"); //extra? Wasn't listed on pdf
             System.out.println("2. sort by artist by Z-A");
             System.out.println("3. Sort artist by A-Z");
             System.out.println("4. Sort by year: new-old");
@@ -31,11 +36,12 @@ public class SpotifyTester {
             System.out.println("******** MENU *********");
 
 
-            try {
+            try //tries to catch user input error or invalid inputs
+             {
                 System.out.println("Enter your choice from 1-7!");
                 int answer = sc.nextInt();
 
-                if (answer >= VIEWPLAYLIST && answer <= SEARCHBYGENRE) {
+                if (answer >= VIEWPLAYLIST && answer<= SEARCHBYGENRE) {
                     if(answer==VIEWPLAYLIST){
 
                         System.out.println(songs);
@@ -54,12 +60,14 @@ public class SpotifyTester {
                     }
                     else{
                         sc.nextLine();
+                        //asks user what they would like
                         System.out.println("What genre would you like?");
                         System.out.println("The available genres are... Hip-hop, Pop, Synth Pop, Electronic, Rock, Country Rap, R&B, and Indie");
                         String gen=sc.nextLine();
                         songs.searchByGenre(gen);
                     }
-                } else if (answer == QUIT) {
+                } // exit program if user chooses option 7
+                else if (answer == QUIT) {
                     System.out.println("Thank you for participating");
                     break;
                 }
@@ -67,7 +75,6 @@ public class SpotifyTester {
                 else{
                     System.out.println("Choose 1-7 only");
                     continue;
-
                 }
             }catch (InputMismatchException e){
                 System.out.println("Invalid input; input correctly next time");

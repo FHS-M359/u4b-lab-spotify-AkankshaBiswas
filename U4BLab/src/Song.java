@@ -1,4 +1,6 @@
 public class Song {
+    // The song class represents a single song with information such as title,
+    // artist, album, genre, year, duration
     private String title;
     private String artist;
     private String album;
@@ -7,7 +9,7 @@ public class Song {
     private int year;
 
 
-
+    // Constructor that creates a Song object with all the song info
     public Song(String title, String artist, String album, String genre, int year, int duration) {
         this.title = title;
         this.artist = artist;
